@@ -1,17 +1,19 @@
-const NOTE_SIZE = 40
+const NOTE_SIZE = 60
+let noteColours = ["#00FF00", "#FF0000", "#FFFF00", "#0000FF"]
+
 
 class Note{
-    constructor(x){
-        this.x = x
+    constructor(row,){
+        this.row =  row
+        this.x = width/(noteRows + 1) * (this.row+1)
         this.y = 0
         this.diameter = NOTE_SIZE
         this.radius = this.diameter/2
         this.speed = 2
-        this.colour = "#FFFFFF"
+        this.colour = noteColours[this.row]
     }
     draw(){
-        // fill(this.colour)
-        // rect(this.x, this.y, this.length, this.length)
+        fill(this.colour)
         circle(this.x, this.y, this.diameter)
     }
     update(){
