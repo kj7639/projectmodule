@@ -1,5 +1,9 @@
-const perfectLineDist = 125
 const FPS = 60
+let game = true
+const gameLength = 60 * FPS
+let timeLeft = gameLength
+
+const perfectLineDist = 125
 
 let notes = {
     0: [],
@@ -9,7 +13,7 @@ let notes = {
 }
 
 const noteRows = 4
-const noteSpawnRate = 1 * FPS
+const noteSpawnRate = 2 * FPS
 let noteCountdown = 5
 
 let score = 0
@@ -28,45 +32,53 @@ function setup(){
 function draw(){
     background(0)
 
-    stroke(255)
-    fill(0)
-    line(0, height-perfectLineDist, width, height-perfectLineDist)
-    for(let i = 0; i < noteRows; i++){
-        let lineX = width/(noteRows+1)*(i+1)
-        line(lineX, 0, lineX, height)
-        circle(lineX, height-perfectLineDist, NOTE_SIZE)
-    }
+    text(score, 50, 50)
 
-    fill("pink")
-    circle(160, height-perfectLineDist-30 , 60)
-    
-    stroke(0)
-    noteCountdown --
-    if(noteCountdown == 0){
-        let rand = Math.floor(Math.random()*noteRows)
-        let n = new Note(rand)
-        notes[rand].push(n)
-        noteCountdown = noteSpawnRate
-    }
+    if(game == true){
+        timeLeft --
+        if(timeLeft == 0){
+            game = false
+        }
 
-    for(let i = 0; i < noteRows; i++){
-        for(let a = 0; a < notes[i].length; a++){
-            notes[i][a].update()
-            notes[i][a].draw()
-            if(notes[i][a].outOfBounds()){
-                notes[i].splice(a, 1)
+        stroke(255)
+        fill(0)
+        line(0, height-perfectLineDist, width, height-perfectLineDist)
+        for(let i = 0; i < noteRows; i++){
+            let lineX = width/(noteRows+1)*(i+1)
+            line(lineX, 0, lineX, height)
+            circle(lineX, height-perfectLineDist, NOTE_SIZE)
+        }
+
+        // fill("pink")
+        // circle(160, height-perfectLineDist-30 , 60)
+        
+        stroke(0)
+        noteCountdown --
+        if(noteCountdown == 0){
+            let rand = Math.floor(Math.random()*noteRows)
+            let n = new Note(rand)
+            notes[rand].push(n)
+            noteCountdown = noteSpawnRate
+        }
+
+        for(let i = 0; i < noteRows; i++){
+            for(let a = 0; a < notes[i].length; a++){
+                notes[i][a].update()
+                notes[i][a].draw()
+                if(notes[i][a].outOfBounds()){
+                    notes[i].splice(a, 1)
+                }
             }
         }
-    }
+        
+        noFill()
+        stroke(255)
+        for(let i = 0; i < noteRows; i++){
+            let lineX = width/(noteRows+1)*(i+1)
+            circle(lineX, height-perfectLineDist, NOTE_SIZE)
+        }
     
-    noFill()
-    stroke(255)
-    for(let i = 0; i < noteRows; i++){
-        let lineX = width/(noteRows+1)*(i+1)
-        circle(lineX, height-perfectLineDist, NOTE_SIZE)
     }
-    
-
 
 }
 
@@ -104,6 +116,5 @@ function scoring(dist){
         score += scoreVals.ok
     }else if(dist <= 40){
         score += scoreVals.meh
-
     }
 }

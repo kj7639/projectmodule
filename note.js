@@ -9,7 +9,7 @@ class Note{
         this.y = 0
         this.diameter = NOTE_SIZE
         this.radius = this.diameter/2
-        this.speed = 2
+        this.speed = 2.5
         this.colour = noteColours[this.row]
     }
     draw(){
