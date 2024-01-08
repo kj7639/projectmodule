@@ -40,6 +40,7 @@ function draw(){
             game = false
         }
 
+        strokeWeight(3)
         stroke(255)
         fill(0)
         line(0, height-perfectLineDist, width, height-perfectLineDist)
@@ -86,6 +87,7 @@ let keys = ["a", "s", "d", "f"]
 function keyPressed(){
     for(let i = 0; i < noteRows; i++){
         if(key == keys[i]){
+            //cant remove console log or scoring stops working... 
             console.log(key + ": " + distFrom(notes[i][0]))
             notes[i].splice(0, 1)
         }
