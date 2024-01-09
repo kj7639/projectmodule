@@ -34,10 +34,18 @@ function draw(){
     if(started == false){
         fill("#055be6")
         rect(width/2, height/2, width/3 *2, height/2)
+
         for(let i = 0; i < 3; i++){
+            let x = ((width/5 * 3)/3)*(i+1.5)
+            let y = 
             fill(255)
-            rect(((width/5 * 3)/3)*(i+1.5), height/5 * 2.5, 120, 25)
-            rect(((width/5 * 3)/3)*(i+1.5), height/5 * 3, 120, 25)
+            rect(x, height/5 * 2.5, 120, 25)
+            fill(0)
+            text("yee-haw", x - 22, height/5 * 2.5 + 5)
+            fill(255)
+            rect(x, height/5 * 3, 120, 25)
+            fill(0)
+            text("howdy", x - 18, height/5 * 3 + 5)
         }
     }else{
         strokeWeight(1)
