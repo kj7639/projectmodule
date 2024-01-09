@@ -1,5 +1,6 @@
 const FPS = 60
-let game = true
+let game = false
+let started = false
 const gameLength = 60 * FPS
 let timeLeft = gameLength
 
@@ -23,16 +24,27 @@ function setup(){
     createCanvas(800, 700)
     frameRate(FPS)
     rectMode(CENTER);
-
-    // let n = new Note(width/2)
-    // notes.push(n)
-    
 }
+
 
 function draw(){
     background(0)
 
-    text(score, 50, 50)
+    
+    if(started == false){
+        fill("#055be6")
+        rect(width/2, height/2, width/3 *2, height/2)
+        for(let i = 0; i < 3; i++){
+            fill(255)
+            rect(((width/5 * 3)/3)*(i+1.5), height/5 * 2.5, 120, 25)
+            rect(((width/5 * 3)/3)*(i+1.5), height/5 * 3, 120, 25)
+        }
+    }else{
+        strokeWeight(1)
+        textSize(30)
+        text(score, 30, 50)
+        
+    }
 
     if(game == true){
         timeLeft --
@@ -40,7 +52,7 @@ function draw(){
             game = false
         }
 
-        strokeWeight(3)
+        strokeWeight(4)
         stroke(255)
         fill(0)
         line(0, height-perfectLineDist, width, height-perfectLineDist)
@@ -53,7 +65,7 @@ function draw(){
         // fill("pink")
         // circle(160, height-perfectLineDist-30 , 60)
         
-        stroke(0)
+        strokeWeight(0)
         noteCountdown --
         if(noteCountdown == 0){
             let rand = Math.floor(Math.random()*noteRows)
@@ -87,8 +99,7 @@ let keys = ["a", "s", "d", "f"]
 function keyPressed(){
     for(let i = 0; i < noteRows; i++){
         if(key == keys[i]){
-            //cant remove console log or scoring stops working... 
-            console.log(key + ": " + distFrom(notes[i][0]))
+            distFrom(notes[i][0])
             notes[i].splice(0, 1)
         }
     }
