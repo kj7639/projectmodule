@@ -24,9 +24,10 @@ function setup(){
     createCanvas(800, 700)
     frameRate(FPS)
     rectMode(CENTER);
+    textAlign(CENTER, CENTER)
 }
 
-
+let options = [3,4,5]
 function draw(){
     background(0)
 
@@ -41,11 +42,11 @@ function draw(){
             fill(255)
             rect(x, height/5 * 2.5, 120, 25)
             fill(0)
-            text("yee-haw", x - 22, height/5 * 2.5 + 5)
+            text("yee-haw", x, height/5 * 2.5)
             fill(255)
             rect(x, height/5 * 3, 120, 25)
             fill(0)
-            text("howdy", x - 18, height/5 * 3 + 5)
+            text("howdy", x, height/5 * 3)
         }
     }else{
         strokeWeight(1)
