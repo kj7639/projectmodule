@@ -1,8 +1,8 @@
 const FPS = 60
-let game = false
-let started = false
-const gameLength = 60 * FPS
-let timeLeft = gameLength
+let game = true
+let started = true
+// const gameLength = 60 * FPS
+// let timeLeft = gameLength
 
 const perfectLineDist = 125
 
@@ -13,8 +13,9 @@ let notes = {
     3: [],
 }
 
-const noteRows = 4
-const noteSpawnRate = 2 * FPS
+let number = prompt("Pick how many rows you want (3 or 4)")
+let noteRows = parseInt(number)
+let noteSpawnRate = 2 * FPS
 let noteCountdown = 5
 
 let score = 0
@@ -27,27 +28,37 @@ function setup(){
     textAlign(CENTER, CENTER)
 }
 
-let options = [3,4,5]
+// let buttons = []
+// let options = [3,4,5]
+
+// for(let i = 0; i < 3; i++){
+//     let x = ((width/5 * 3)/3)*(i+1.5)
+//     // let y = height/5 * 2.5
+//     let b = new Button(x, y, options[i])
+//     buttons.push(b)
+//     // fill(255)
+//     // rect(x, height/5 * 2.5, 120, 25)
+//     // fill(0)
+//     // text("yee-haw", x, height/5 * 2.5)
+//     // fill(255)
+//     // rect(x, height/5 * 3, 120, 25)
+//     // fill(0)
+//     // text("howdy", x, height/5 * 3)
+
+// }
+// let number = prompt("Pick how many rows you want (3-5")
 function draw(){
     background(0)
 
     
     if(started == false){
-        fill("#055be6")
-        rect(width/2, height/2, width/3 *2, height/2)
+        // fill("#055be6")
+        // rect(width/2, height/2, width/3 *2, height/2)
+        // for(let i = 0; i < buttons.length; i++){
+        //     fill(255)
+        //     buttons[i].draw()
+        // }
 
-        for(let i = 0; i < 3; i++){
-            let x = ((width/5 * 3)/3)*(i+1.5)
-            let y = 
-            fill(255)
-            rect(x, height/5 * 2.5, 120, 25)
-            fill(0)
-            text("yee-haw", x, height/5 * 2.5)
-            fill(255)
-            rect(x, height/5 * 3, 120, 25)
-            fill(0)
-            text("howdy", x, height/5 * 3)
-        }
     }else{
         strokeWeight(1)
         textSize(30)
@@ -56,10 +67,10 @@ function draw(){
     }
 
     if(game == true){
-        timeLeft --
-        if(timeLeft == 0){
-            game = false
-        }
+        // timeLeft --
+        // if(timeLeft == 0){
+        //     game = false
+        // }
 
         strokeWeight(4)
         stroke(255)
@@ -101,10 +112,17 @@ function draw(){
         }
     
     }
+    if(score >= 2000){
+        noteSpawnRate = 0.5 * FPS
+    }else if(score >= 1000){
+        noteSpawnRate = FPS
+    }else if(score >= 500){
+        noteSpawnRate = 1.5 * FPS
+    }
 
 }
 
-let keys = ["a", "s", "d", "f"]
+let keys = ["a", "s", "d", "f", "g"]
 function keyPressed(){
     for(let i = 0; i < noteRows; i++){
         if(key == keys[i]){

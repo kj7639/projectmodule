@@ -1,5 +1,5 @@
 const NOTE_SIZE = 60
-let noteColours = ["#00FF00", "#FF0000", "#FFFF00", "#0000FF"]
+let noteColours = ["#00FF00", "#FF0000", "#FFFF00", "#0000FF", "#fc6500"]
 
 
 class Note{
@@ -9,7 +9,7 @@ class Note{
         this.y = 0
         this.diameter = NOTE_SIZE
         this.radius = this.diameter/2
-        this.speed = 2.5
+        this.speed = 3
         this.colour = noteColours[this.row]
     }
     draw(){
